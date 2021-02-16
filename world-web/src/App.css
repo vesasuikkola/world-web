@@ -1,0 +1,38 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  background-color: #dddddda0;
+  margin: 2rem 10vw;
+  padding: 0.5rem 1rem;
+  min-width: 508px;
+  width: 80vw;
+  height: calc(100vh - 4rem);
+  overflow-x: hidden;
+}
+
+.App li:hover {
+  color: red;
+  cursor: pointer;
+}
+
+/** Scroll bar **/
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 3px;
+  background: #f1f1f1;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: #888;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/** **/
