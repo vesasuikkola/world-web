@@ -15,7 +15,8 @@ export const usage = async (req, res) => {
 
 export const getAll = async (req, res) => {
   try {
-    res.status(200).json(await readCollection());
+    const docs = await readCollection();
+    docs ? res.status(200).json(docs) : res.status(404).send();
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -23,7 +24,8 @@ export const getAll = async (req, res) => {
 
 export const getOne = async (req, res) => {
   try {
-    res.status(200).json((await readCollection(req.params.code))[0]);
+    const doc = (await readCollection(req.params.code))[0];
+    doc ? res.status(200).json(doc) : res.status(404).send();
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -31,9 +33,9 @@ export const getOne = async (req, res) => {
 
 export const addOrUpdate = async (req, res) => {
   try {
-    res
-      .status(200)
-      .json({ success: (await updateCollection(req.params.code)).ok === 1 });
+    (await updateCollection(req.params.code)).ok === 1
+      ? res.status(201).send()
+      : res.status(400).send();
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -41,9 +43,10 @@ export const addOrUpdate = async (req, res) => {
 
 const readCollection = (code) => {
   let query;
+  const projection = { _id: 0, __v: 0, countryCode: 0 };
   const options = { limit: 10 }; //TODO: parametrize these for the client to control?
   query = code ? { countryCode: code } : {};
-  return models.View.find(query, null, options);
+  return models.View.find(query, projection, options);
 };
 
 const updateCollection = (code) => {
