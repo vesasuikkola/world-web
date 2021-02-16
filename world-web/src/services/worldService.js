@@ -14,6 +14,7 @@ export const getData = async (code) => {
 
   if (!worldData.length) return worldData; // return here if we don't have a data array
 
+  // otherwise, enrich with data from the analytics api
   const analyticsData = (await axios.get(ANALYTICS).catch(console.log)).data;
 
   worldData.forEach((country) => {
