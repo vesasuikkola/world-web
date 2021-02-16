@@ -6,11 +6,14 @@ const router = express.Router();
 
 export const usage = async (req, res) => {
   try {
-    res
-      .status(200)
-      .send(
-        'Available collections are: <a href="/world/countries">/countries</a>, <a href="/world/cities">/cities</a>, <a href="/world/languages">/languages</a>'
-      );
+    res.status(200).json({
+      usage: 'Call some available collection',
+      collections: {
+        countries: '/world/countries',
+        cities: '/world/cities',
+        languages: '/world/languages'
+      }
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
