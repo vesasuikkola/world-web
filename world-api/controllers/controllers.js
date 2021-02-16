@@ -28,25 +28,26 @@ export const getOne = async (req, res) => {
   try {
     res
       .status(200)
-      .json(await readCollection(req.params.collection, req.params.code));
+      .json((await readCollection(req.params.collection, req.params.code))[0]);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
 const readCollection = (collection, code) => {
-  let query;
+  let query = {};
+  const projection = { _id: 0, __v: 0 };
   const options = { limit: 10 }; //TODO: parametrize these for the client to control?
   switch (collection) {
     case collections.CITIES:
-      query = code ? { CountryCode: code } : {};
-      return models.City.find(query, null, options);
+      if (code) query.CountryCode = code;
+      return models.City.find(query, projection, options);
     case collections.COUNTRIES:
-      query = code ? { Code: code } : {};
-      return models.Country.find(query, null, options);
+      if (code) query.Code = code;
+      return models.Country.find(query, projection, options);
     case collections.LANGUAGES:
-      query = code ? { CountryCode: code } : {};
-      return models.Language.find(query, null, options);
+      if (code) query.CountryCode = code;
+      return models.Language.find(query, projection, options);
     default:
       return undefined;
   }
