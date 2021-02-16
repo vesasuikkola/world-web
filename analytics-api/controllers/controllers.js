@@ -23,7 +23,7 @@ export const getAll = async (req, res) => {
 
 export const getOne = async (req, res) => {
   try {
-    res.status(200).json(await readCollection(req.params.code));
+    res.status(200).json((await readCollection(req.params.code))[0]);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -43,17 +43,7 @@ const readCollection = (code) => {
   let query;
   const options = { limit: 10 }; //TODO: parametrize these for the client to control?
   query = code ? { countryCode: code } : {};
-  //FIXME refactor the below hack
-  const result = models.View.find(query, null, options);
-  return code
-    ? result.map((doc) => {
-        return {
-          views: doc[0].views,
-          lastView: doc[0].lastView
-        };
-      })
-    : result;
-  //
+  return models.View.find(query, null, options);
 };
 
 const updateCollection = (code) => {
