@@ -43,11 +43,11 @@ export const addOrUpdate = async (req, res) => {
 
 const readCollection = (code) => {
   let query;
-  const projection = { _id: 0, __v: 0, countryCode: 0 };
-  const options = { limit: 10 }; //TODO: parametrize these for the client to control?
+  const projection = { _id: 0, __v: 0 };
+  const options = { limit: 100 }; //TODO: parametrize these for the client to control?
   query = code ? { countryCode: code } : {};
   return models.View.find(query, projection, options);
-};
+};;;;
 
 const updateCollection = (code) => {
   return models.View.updateOne(
