@@ -21,7 +21,8 @@ export const usage = async (req, res) => {
 
 export const getAll = async (req, res) => {
   try {
-    res.status(200).json(await readCollection(req.params.collection));
+    const docs = await readCollection(req.params.collection);
+    docs ? res.status(200).json(docs) : res.status(404).send();
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -29,9 +30,10 @@ export const getAll = async (req, res) => {
 
 export const getOne = async (req, res) => {
   try {
-    res
-      .status(200)
-      .json((await readCollection(req.params.collection, req.params.code))[0]);
+    const doc = (
+      await readCollection(req.params.collection, req.params.code)
+    )[0];
+    doc ? res.status(200).json(doc) : res.status(404).send();
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
