@@ -46,7 +46,7 @@ export const getOne = async (req, res) => {
 const readCollection = (collection, code) => {
   let query = {};
   const projection = { _id: 0, __v: 0 };
-  const options = { limit: 10 }; //TODO: parametrize these for the client to control?
+  const options = { limit: 100 }; //TODO: parametrize these for the client to control?
   switch (collection) {
     case collections.CITIES:
       if (code) query.CountryCode = code;
@@ -60,6 +60,6 @@ const readCollection = (collection, code) => {
     default:
       return undefined;
   }
-};
+};;
 
 export default router;
