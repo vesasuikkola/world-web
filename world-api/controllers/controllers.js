@@ -11,14 +11,16 @@ export const usage = async (req, res) => {
       .send(
         'Available collections are: <a href="/world/countries">/countries</a>, <a href="/world/cities">/cities</a>, <a href="/world/languages">/languages</a>'
       );
-  } catch (error) {}
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
 export const getAll = async (req, res) => {
   try {
-    res.status(200).json(await queryCollection(req.params.collection));
+    res.status(200).json(await readCollection(req.params.collection));
   } catch (error) {
-    res.status(error.type).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -26,15 +28,15 @@ export const getOne = async (req, res) => {
   try {
     res
       .status(200)
-      .json(await queryCollection(req.params.collection, req.params.code));
+      .json(await readCollection(req.params.collection, req.params.code));
   } catch (error) {
-    res.status(error.type).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
-const queryCollection = (collection, code) => {
+const readCollection = (collection, code) => {
   let query;
-  const options = { limit: 10 }; //TODO: parametrize these
+  const options = { limit: 10 }; //TODO: parametrize these for the client to control?
   switch (collection) {
     case collections.CITIES:
       query = code ? { CountryCode: code } : {};
