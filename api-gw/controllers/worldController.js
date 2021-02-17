@@ -1,5 +1,4 @@
 import apiAdapter from '../services/apiAdapter.js';
-//import isAuthorized from '../controllers/requestAuthenticator.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -15,13 +14,3 @@ export const get = (req, res) =>
       res.status(apiRes.status).send(apiRes.data);
     })
     .catch((error) => res.status(500).json(error));
-
-//TODO: version with authorization on the api-gw level
-// router.get('/world*', isAuthorized, (req, res) => {
-//   api
-//     .get(req.path)
-//     .then((resp) => {
-//       res.send(resp.data);
-//     })
-//     .catch((error) => res.json(error));
-// });

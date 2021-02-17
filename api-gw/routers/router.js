@@ -1,21 +1,21 @@
 import express from 'express';
-import logger from '../services/logService.js';
+import isAuthorized from '../services/requestAuthenticator.js';
 
 const router = express.Router();
-router.use(logger);
 router.get('/', (req, res) => res.send('Simple API Gateway'));
 
-//TODO
-//import authRouter from '../controllers/AuthController.js';
-//router.use(authRouter);
+// Authentication
+import * as auth from '../controllers/authController.js';
+router.post('/register', auth.register);
+router.post('/login', auth.login);
 
 // Analytics API
 import * as analyticsAPI from '../controllers/analyticsController.js';
-router.get('/analytics*', analyticsAPI.get);
-router.put('/analytics*', analyticsAPI.put);
+router.get('/analytics*', isAuthorized, analyticsAPI.get);
+router.put('/analytics*', isAuthorized, analyticsAPI.put);
 
 // World API
 import * as worldAPI from '../controllers/worldController.js';
-router.get('/world*', worldAPI.get);
+router.get('/world*', isAuthorized, worldAPI.get);
 
 export default router;

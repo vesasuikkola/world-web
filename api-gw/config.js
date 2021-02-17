@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 export default {
-  secret: 'qweqweqwe'
+  secret: process.env.AUTH_SECRET
 };
