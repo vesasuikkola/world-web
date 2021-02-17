@@ -1,5 +1,4 @@
 import apiAdapter from '../services/apiAdapter.js';
-//import isAuthorized from '../controllers/requestAuthenticator.js';
 
 const PORT = process.env.ANALYTICS_PORT || 4002;
 const HOST = process.env.ANALYTICS_HOST || 'localhost';
@@ -21,5 +20,3 @@ export const put = (req, res) =>
     })
     .then((apiRes) => res.status(apiRes.status).send(apiRes.data))
     .catch((error) => res.status(500).json(error));
-
-//TODO: auth version
