@@ -36,7 +36,7 @@ export const getOne = async (req, res) => {
     )[0];
     if (doc) {
       res.status(200).json(doc);
-      analyticsService.updateViews(req.params.code);
+      analyticsService.updateViews(req.params.code, req.headers.authorization);
     } else res.status(404).send();
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -60,6 +60,6 @@ const readCollection = (collection, code) => {
     default:
       return undefined;
   }
-};;
+};
 
 export default router;

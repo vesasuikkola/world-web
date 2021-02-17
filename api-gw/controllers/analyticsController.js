@@ -8,7 +8,7 @@ const api = apiAdapter(BASE_URL);
 
 export const get = (req, res) =>
   api
-    .get(req.path, { headers: { 'authorization': req.headers.authorization }})
+    .get(req.path, { headers: { authorization: req.headers.authorization } })
     .then((apiRes) => {
       res.status(apiRes.status).send(apiRes.data);
     })
@@ -16,7 +16,9 @@ export const get = (req, res) =>
 
 export const put = (req, res) =>
   api
-    .put(req.path, { headers: { 'authorization': req.headers.authorization }})
+    .put(req.path, null, {
+      headers: { authorization: req.headers.authorization }
+    })
     .then((apiRes) => res.status(apiRes.status).send(apiRes.data))
     .catch((error) => res.status(500).json(error));
 
