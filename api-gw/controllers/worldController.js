@@ -9,7 +9,7 @@ const api = apiAdapter(BASE_URL);
 
 export const get = (req, res) =>
   api
-    .get(req.path)
+    .get(req.path, { headers: { authorization: req.headers.authorization } })
     .then((apiRes) => {
       res.status(apiRes.status).send(apiRes.data);
     })
