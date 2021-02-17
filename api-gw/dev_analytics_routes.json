@@ -1,0 +1,4 @@
+{
+    "/analytics/views": "/views",
+    "/analytics/views/:id": "/views/:id"
+}

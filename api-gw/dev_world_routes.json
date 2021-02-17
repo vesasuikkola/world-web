@@ -1,0 +1,4 @@
+{
+    "/world/countries": "/countries",
+    "/world/countries/:id": "/countries/:id"
+}
