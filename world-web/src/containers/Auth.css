@@ -1,0 +1,8 @@
+.Auth-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login {
+    cursor: pointer;
+}

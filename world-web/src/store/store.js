@@ -1,9 +1,10 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import authReducer from '../reducers/authReducer'
 import worldReducer from '../reducers/worldReducer';
-import { fetchCountries } from '../actions/worldActions';
 
 const rootReducer = combineReducers({
+  auth: authReducer,
   world: worldReducer
 });
 
@@ -13,7 +14,5 @@ const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(thunk))
 );
-
-store.dispatch(fetchCountries());
 
 export default store;
