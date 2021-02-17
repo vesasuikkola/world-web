@@ -1,15 +1,21 @@
 import express from 'express';
-import worldRouter from './worldService.js';
-import analyticsRouter from './analyticsService.js';
 import logger from '../services/logService.js';
-//import authRouter from '../controllers/AuthController.js';
 
 const router = express.Router();
 router.use(logger);
-
 router.get('/', (req, res) => res.send('Simple API Gateway'));
-router.use(worldRouter);
-router.use(analyticsRouter);
+
+//TODO
+//import authRouter from '../controllers/AuthController.js';
 //router.use(authRouter);
+
+// Analytics API
+import * as analyticsAPI from '../controllers/analyticsController.js';
+router.get('/analytics*', analyticsAPI.get);
+router.put('/analytics*', analyticsAPI.put);
+
+// World API
+import * as worldAPI from '../controllers/worldController.js';
+router.get('/world*', worldAPI.get);
 
 export default router;
