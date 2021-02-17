@@ -10,10 +10,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-app.get('/', (req, res) => {
-  res.send('Simple API Gateway');
-});
-
 app.use(router);
 
 const PORT = process.env.PORT || 4000;

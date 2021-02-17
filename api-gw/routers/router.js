@@ -7,6 +7,7 @@ import logger from '../services/logService.js';
 const router = express.Router();
 router.use(logger);
 
+router.get('/', (req, res) => res.send('Simple API Gateway'));
 router.use(worldRouter);
 router.use(analyticsRouter);
 //router.use(authRouter);
