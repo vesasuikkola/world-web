@@ -8,8 +8,6 @@ const initialState = JSON.parse(localStorage.getItem('world-user')) || {
 export default function authReducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.REGISTER:
-      localStorage.setItem('world-user', JSON.stringify(action.payload));
-      return action.payload;
     case actionTypes.LOGIN:
       localStorage.setItem('world-user', JSON.stringify(action.payload));
       return action.payload;
