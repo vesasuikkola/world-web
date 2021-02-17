@@ -21,3 +21,12 @@ export const login = (email, password) => async (dispatch) => {
       payload: { email: email, auth: auth.data }
     });
 };
+
+export const logout = () => async (dispatch) =>
+  dispatch({
+    type: actionTypes.LOGOUT,
+    payload: {
+      email: null,
+      auth: { auth: null, token: null }
+    }
+  });

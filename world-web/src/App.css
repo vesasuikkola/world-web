@@ -9,11 +9,19 @@
   width: 80vw;
   height: calc(100vh - 4rem);
   overflow-x: hidden;
+  position: relative;
 }
 
 .App li:hover {
   color: red;
   cursor: pointer;
+}
+
+.App > button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.25rem 0.5rem;
 }
 
 /** Scroll bar **/

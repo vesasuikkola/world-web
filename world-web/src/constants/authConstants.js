@@ -1,4 +1,5 @@
 export const actionTypes = {
   REGISTER: 'REGISTER',
-  LOGIN: 'LOGIN'
+  LOGIN: 'LOGIN',
+  LOGOUT: 'LOGOUT'
 };
