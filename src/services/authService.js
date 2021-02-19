@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 const API_HOST = process.env.REACT_APP_API_HOST || 'localhost';
-const API_PORT = process.env.REACT_APP_API_PORT || 3000;
+const API_PORT = process.env.REACT_APP_API_PORT || 443;
 
-const API = `http://${API_HOST}:${API_PORT}`;
+const API = `${API_HOST}:${API_PORT}`;
 
 export const register = async (name, email, password) =>
   await axios

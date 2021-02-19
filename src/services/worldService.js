@@ -2,10 +2,10 @@ import axios from 'axios';
 import { API_PATHS } from '../config';
 
 const API_HOST = process.env.REACT_APP_API_HOST || 'localhost';
-const API_PORT = process.env.REACT_APP_API_PORT || 4000;
+const API_PORT = process.env.REACT_APP_API_PORT || 443;
 
-const WORLD = `http://${API_HOST}:${API_PORT}/${API_PATHS.world_db.countries}`;
-const ANALYTICS = `http://${API_HOST}:${API_PORT}/${API_PATHS.analytics_db.views}`;
+const WORLD = `${API_HOST}:${API_PORT}/${API_PATHS.world_db.countries}`;
+const ANALYTICS = `${API_HOST}:${API_PORT}/${API_PATHS.analytics_db.views}`;
 
 export const getData = async (jwt, code) => {
   const config = { headers: { authorization: jwt } };
