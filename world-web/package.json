@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "cross-env PORT=3001 react-scripts start ",
-    "json-server": "npx json-server --watch db.json",
+    "json-server": "npx json-server --watch test/dev_db.json --routes test/dev_db_routes.json --id \"Code\"",
     "dev": "npx npm-run-parallel json-server start",
     "build": "react-scripts build",
     "test": "react-scripts test",
