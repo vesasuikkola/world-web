@@ -2,5 +2,7 @@
     "/analytics/views": "/analytics_views",
     "/analytics/views/:id": "/analytics_views/:id",
     "/world/countries": "/world_countries",
-    "/world/countries/:id": "/world_countries/:id"
+    "/world/countries/:id": "/world_countries/:id",
+    "/register": "/auth",
+    "/login": "/auth"
 }
