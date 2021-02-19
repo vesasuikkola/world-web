@@ -11,6 +11,7 @@ export default function World() {
   if (!data.length)
     for (let k in data) if (k !== 'Name') details += `<p>${k}: ${data[k]}</p>`;
 
+  //TODO: add a data load spinner
   return (
     <ul>
       {data.length ? (

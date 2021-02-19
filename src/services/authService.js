@@ -5,6 +5,8 @@ const API_PORT = process.env.REACT_APP_API_PORT || 443;
 
 const API = `${API_HOST}:${API_PORT}`;
 
+//FIXME: hash password before sending?
+
 export const register = async (name, email, password) =>
   await axios
     .post(`${API}/register`, { name: name, email: email, password: password })

@@ -29,6 +29,7 @@ export default function Auth() {
     else alert('Please provide matching passwords!');
   };
 
+  //FIXME: security issues with form behaviour when switching between register/login
   return form ? (
     <form method="POST" className="Auth-form" onSubmit={handleLogin}>
       <h2>Please login</h2>

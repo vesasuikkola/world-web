@@ -16,6 +16,7 @@ export const getData = async (jwt, code) => {
 
   if (!worldData.length) return worldData; // return here if we don't have a data array
 
+  ///TODO: move this to api-gw (api composition pattern)
   // otherwise, enrich with data from the analytics api
   const data = (await axios.get(ANALYTICS, config).catch(console.log)).data;
 
@@ -24,6 +25,7 @@ export const getData = async (jwt, code) => {
     country.views = countryViews ? countryViews.views : 0;
     country.lastView = countryViews ? new Date(countryViews.lastView) : null;
   });
+  ///
 
   return worldData;
 };
