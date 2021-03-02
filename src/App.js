@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCountries } from './actions/worldActions';
 import { logout } from './actions/authActions';
-import World from './containers/World';
+import World from './components/World';
 import Auth from './components/Auth';
 import './App.css';
 
@@ -12,7 +12,11 @@ export default function App() {
   return (
     <div className="App">
       <h1>Welcome to the world app!</h1>
-      {token && <button onClick={() => dispatch(logout())}>Logout</button>}
+      {token && (
+        <button className="logout" onClick={() => dispatch(logout())}>
+          Logout
+        </button>
+      )}
       <hr />
       {token ? dispatch(fetchCountries(token)) && <World /> : <Auth />}
     </div>

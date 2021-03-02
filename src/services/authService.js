@@ -1,18 +1,17 @@
 import axios from 'axios';
+import { API } from '../config';
 
-const API_HOST = process.env.REACT_APP_API_HOST || 'localhost';
-const API_PORT = process.env.REACT_APP_API_PORT || 443;
-
-const API = `${API_HOST}:${API_PORT}`;
-
-//FIXME: hash password before sending?
+const BASE_URL = `${API.api_host}:${API.api_port}`;
+const api = axios.create({ baseURL: BASE_URL });
 
 export const register = async (name, email, password) =>
-  await axios
-    .post(`${API}/register`, { name: name, email: email, password: password })
+  await api
+    .post('/register', {
+      name: name,
+      email: email,
+      password: password
+    })
     .catch(alert);
 
 export const login = async (email, password) =>
-  await axios
-    .post(`${API}/login`, { email: email, password: password })
-    .catch(alert);
+  await api.post('/login', { email: email, password: password }).catch(alert);

@@ -1,17 +1,15 @@
 import axios from 'axios';
-import { API_PATHS } from '../config';
+import { API } from '../config';
 
-const API_HOST = process.env.REACT_APP_API_HOST || 'localhost';
-const API_PORT = process.env.REACT_APP_API_PORT || 443;
-
-const WORLD = `${API_HOST}:${API_PORT}/${API_PATHS.world_db.countries}`;
+const BASE_URL = `${API.api_host}:${API.api_port}/${API.world_api_path}`;
+const api = axios.create({ baseURL: BASE_URL });
 
 export const getData = async (jwt, code) => {
   const config = { headers: { authorization: jwt } };
 
   const worldData = code
-    ? (await axios.get(`${WORLD}/${code}`, config).catch(console.log)).data
-    : (await axios.get(WORLD, config).catch(console.log)).data;
+    ? (await api.get(`/${code}`, config).catch(console.log)).data
+    : (await api.get(null, config).catch(console.log)).data;
 
   return worldData;
 };
